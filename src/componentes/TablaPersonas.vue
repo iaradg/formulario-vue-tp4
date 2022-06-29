@@ -62,6 +62,7 @@
 <style scoped lang="css">
   .src-componentes-tabla-personas {
 
+
   }
   jumbotron{
     background-color:darkolivegreen ;
