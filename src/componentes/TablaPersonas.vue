@@ -1,8 +1,9 @@
 <template >
 
  <div class="jumbotron">
-  <button class="btn btn-success my-3 mr-3" @click="getPostsXHRcb()" > Pedir XHR</button>
-<button class="btn btn-danger my-3 mr-3" @click="usuarios=[]" > Borrar</button>
+  <button class="btn btn-success my-3 mr-3" @click="getUsuariosXHRcb()" > Pedir XHR</button>
+  <button class="btn btn-success my-3 mr-3" @click="getUsuariosFetch()" > Pedir Fetch</button>
+  <button class="btn btn-danger my-3 mr-3" @click="usuarios=[]" > Borrar</button>
 
     <div class="table-responsive">
       <table class="table table-dark">
@@ -40,7 +41,7 @@
       }
     },
     methods: {
-      getPostsXHRcb(){
+      getUsuariosXHRcb(){
             const xhr= new XMLHttpRequest()
             xhr.open('get',this.url)
             xhr.addEventListener('load',() =>{
@@ -50,7 +51,19 @@
             })
             xhr.send()
         },
-    },
+       async getUsuariosFetch(){
+           try{
+            let response = await fetch(this.url) //pongo await cuando quiero esperar que una promesa se cumpla
+            let respuesta= await response.json()
+              console.log(respuesta)
+              this.usuarios=respuesta
+            }
+            catch( error){
+              console.error('Error en Fetch:', error)
+            }
+        }
+        },
+    
     computed: {
 
     }
