@@ -3,6 +3,7 @@
  <div class="jumbotron">
   <button class="btn btn-success my-3 mr-3" @click="getUsuariosXHRcb()" > Pedir XHR</button>
   <button class="btn btn-success my-3 mr-3" @click="getUsuariosFetch()" > Pedir Fetch</button>
+  <button class="btn btn-success my-3 mr-3" @click="getUsuariosAxios()" > Pedir Axios (promesa)</button>
   <button class="btn btn-danger my-3 mr-3" @click="usuarios=[]" > Borrar</button>
 
     <div class="table-responsive">
@@ -60,6 +61,16 @@
             }
             catch( error){
               console.error('Error en Fetch:', error)
+            }
+        },
+        async getUsuariosAxios(){
+           try{
+          let{data:respuesta} = await this.axios(this.url)
+          console.log(respuesta)
+          this.usuarios=respuesta
+        }
+          catch (error){
+             console.error('Error en Axios:', error) 
             }
         }
         },
